@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.swufe.myfinaltest.Service.UserService;
+
 public class RegisterActivity extends AppCompatActivity {
 EditText code;
 EditText codeConfirm;
@@ -47,6 +49,11 @@ final String TAG = "RegisterActivity";
                 codeConfirm.setText(null);
             }else {
                 Log.i(TAG,"注册成功");
+                UserService uService = new UserService(RegisterActivity.this);
+                User user=new User();
+                user.setUsername(username);
+                user.setPassword(code1);
+                uService.register(user);
                 Intent intent = new Intent(this,LoginActivity.class);
                 startActivity(intent);
             }
