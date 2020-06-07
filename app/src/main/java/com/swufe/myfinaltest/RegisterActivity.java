@@ -26,6 +26,7 @@ final String TAG = "RegisterActivity";
         userName = findViewById(R.id.userName);
         code = findViewById(R.id.code1);
         codeConfirm = findViewById(R.id.code2);
+        UserService uService = new UserService(RegisterActivity.this);
         String username = userName.getText().toString();
         if (username.length() == 0){
             Toast.makeText(this,"请输入用户名",Toast.LENGTH_SHORT).show();
@@ -47,9 +48,14 @@ final String TAG = "RegisterActivity";
                 Log.i(TAG,"注册失败");
                 code.setText(null);
                 codeConfirm.setText(null);
+            }else if (!uService.isNewRegister(username)){
+                Toast.makeText(this,"用户名相同",Toast.LENGTH_SHORT).show();
+                Log.i(TAG,"注册失败");
+                userName.setText(null);
+                code.setText(null);
+                codeConfirm.setText(null);
             }else {
                 Log.i(TAG,"注册成功");
-                UserService uService = new UserService(RegisterActivity.this);
                 User user=new User();
                 user.setUsername(username);
                 user.setPassword(code1);

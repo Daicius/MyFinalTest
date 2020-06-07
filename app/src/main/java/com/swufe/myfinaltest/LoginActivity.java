@@ -38,6 +38,7 @@ EditText password;
             Log.i("TAG","登录成功");
             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            intent.putExtra("userName",name);
             startActivity(intent);
         }else{
             Log.i("TAG","登录失败");
