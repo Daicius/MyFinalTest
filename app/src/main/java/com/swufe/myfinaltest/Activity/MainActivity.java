@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -22,7 +23,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener{
     TextView textView;
     private List<HashMap<String, String>> listItem;
-    String updateDate = "";
     final String TAG = "MainActivity";
     ListView listView;
     SimpleAdapter ListItemAdapter;
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         initListView();
         listView.setAdapter(ListItemAdapter);
         listView.setOnItemLongClickListener(this);
+        listView.setOnItemClickListener(this);
 
     }
     private void initListView(){
@@ -58,7 +59,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        HashMap<String,String> hashMap = (HashMap<String, String>) listView.getItemAtPosition(position);
+        String timeStr = hashMap.get("Time");
+        String todoStr = hashMap.get("Todo");
+        EditText time = view.findViewById(R.id.resetime);
+        EditText todo = view.findViewById(R.id.resething);
 
+        //打开界面
+
+        Intent intent = new Intent(this,TimeClacActivity.class);
+        intent.putExtra("Time",timeStr);
+        intent.putExtra("Todo",todoStr);
+        startActivity(intent);
     }
 
     @Override
@@ -75,8 +87,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 listItem.remove(position);
                 ListItemAdapter.notifyDataSetChanged();
             }
-        }).
-                setNegativeButton("否",null);
+        }).setNegativeButton("否",null);
         builder.create().show();
         Log.i(TAG,"size"+listItem.size());
         return true;

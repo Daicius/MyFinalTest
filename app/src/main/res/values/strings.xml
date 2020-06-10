@@ -10,4 +10,5 @@
     <string name="code_confirm">确认密码</string>
     <string name="code_Confirm">请再次确认密码</string>
     <string name="btn_add">新增计划</string>
+    <string name="btn_reset">确定</string>
 </resources>
