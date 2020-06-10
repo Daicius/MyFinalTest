@@ -1,4 +1,4 @@
-package com.swufe.myfinaltest;
+package com.swufe.myfinaltest.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.swufe.myfinaltest.R;
 import com.swufe.myfinaltest.Service.UserService;
 
 public class LoginActivity extends AppCompatActivity {
@@ -37,7 +38,7 @@ EditText password;
         if(flag){
             Log.i("TAG","登录成功");
             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("userName",name);
             startActivity(intent);
         }else{

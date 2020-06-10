@@ -9,4 +9,5 @@
     <string name="new_register">注册新用户</string>
     <string name="code_confirm">确认密码</string>
     <string name="code_Confirm">请再次确认密码</string>
+    <string name="btn_add">新增计划</string>
 </resources>

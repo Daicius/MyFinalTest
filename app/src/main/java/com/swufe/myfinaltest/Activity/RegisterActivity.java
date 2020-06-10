@@ -1,4 +1,4 @@
-package com.swufe.myfinaltest;
+package com.swufe.myfinaltest.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.swufe.myfinaltest.R;
+import com.swufe.myfinaltest.Service.User;
 import com.swufe.myfinaltest.Service.UserService;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -60,7 +62,7 @@ final String TAG = "RegisterActivity";
                 user.setUsername(username);
                 user.setPassword(code1);
                 uService.register(user);
-                Intent intent = new Intent(this,LoginActivity.class);
+                Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
             }
         }
