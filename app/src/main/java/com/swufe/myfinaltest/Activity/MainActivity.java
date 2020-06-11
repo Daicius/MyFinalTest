@@ -92,4 +92,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Log.i(TAG,"size"+listItem.size());
         return true;
     }
+    public void btn_add(View view){
+        Intent intent = new Intent(this,TimeClacActivity.class);
+        startActivity(intent);
+
+    }
+
 }

@@ -15,12 +15,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
-//        String sql="create table " + TB_NAME1 + "(id integer primary key autoincrement,username varchar(20),password varchar(20))";
-//        String sql1="create table " + TB_NAME2 + "(username varchar(20) primary key autoincrement,time String,thing String)";
-//        db.execSQL(sql);
-//        db.execSQL(sql1);
         db.execSQL("CREATE TABLE " + TB_NAME1 + "(ID INTEGER PRIMARY KEY AUTOINCREMENT,username varchar(20),password varchar(20))");
-        db.execSQL("CREATE TABLE " + TB_NAME2 + "(username varchar(20) PRIMARY KEY AUTOINCREMENT,time String,thing String)");
+        db.execSQL("CREATE TABLE " + TB_NAME2 + "(ID INTEGER PRIMARY KEY AUTOINCREMENT,username varchar(20),time String,thing String)");
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
