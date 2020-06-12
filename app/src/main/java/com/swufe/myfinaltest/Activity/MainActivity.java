@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.swufe.myfinaltest.R;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     TextView textView;
     private List<HashMap<String, String>> listItem;
     final String TAG = "MainActivity";
+    String username;
     ListView listView;
     SimpleAdapter ListItemAdapter;
 
@@ -34,28 +34,31 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         textView = findViewById(R.id.Main);
         listView = findViewById(R.id.todo);
         Intent intent = getIntent();
-        String userName = intent.getStringExtra("userName");
-        textView.setText(userName);
-        initListView();
-        listView.setAdapter(ListItemAdapter);
+        username = intent.getStringExtra("userName");
+        Log.i(TAG,"get username: "+username);
+        textView.setText(username);
+//        initListView();
+//        listView.setAdapter(ListItemAdapter);
         listView.setOnItemLongClickListener(this);
         listView.setOnItemClickListener(this);
 
     }
-    private void initListView(){
-        listItem = new ArrayList<HashMap<String, String>>();
-        for (int i = 0; i < 10; i++) {
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("Time", "Time: " + i);
-            map.put("Todo", "Todo: " + i);
-            listItem.add(map);
-        }
-        ListItemAdapter = new SimpleAdapter(this, listItem,
-                R.layout.activity_item,
-                new String[]{"Time", "Todo"},
-                new int[]{R.id.time, R.id.todo1}
-        );
-    }
+//    private void initListView(){
+//        listItem = new ArrayList<HashMap<String, String>>();
+//        TimeService service = new TimeService(this);
+//        for (Time time : service.listuser(username)){
+//            HashMap<String,String> hashMap = new HashMap<>();
+//            hashMap.put("todo",time.getThing());
+//            Log.i("TAG",time.getThing());
+//            hashMap.put("time",time.getTime());
+//            listItem.add(hashMap);
+//        }
+//        ListItemAdapter = new SimpleAdapter(this, listItem,
+//                R.layout.activity_item,
+//                new String[]{"time", "todo"},
+//                new int[]{R.id.time, R.id.todo1}
+//        );
+//    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -94,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
     public void btn_add(View view){
         Intent intent = new Intent(this,TimeClacActivity.class);
+        intent.putExtra("username",username);
+        Log.i(TAG,"user = "+username);
         startActivity(intent);
 
     }
