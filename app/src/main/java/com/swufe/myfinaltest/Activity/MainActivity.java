@@ -13,9 +13,15 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
 import com.swufe.myfinaltest.R;
+import com.swufe.myfinaltest.Service.Adapter;
+import com.swufe.myfinaltest.Service.Time;
+import com.swufe.myfinaltest.Service.TimeService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,32 +39,38 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.Main);
         listView = findViewById(R.id.todo);
+        ViewPager viewPager = findViewById(R.id.scrollView);
+        Adapter pageAdapter = new Adapter(getSupportFragmentManager());
+        viewPager.setAdapter(pageAdapter);
+        TabLayout tabLayout = findViewById(R.id.title);
+        tabLayout.setupWithViewPager(viewPager);
         Intent intent = getIntent();
         username = intent.getStringExtra("userName");
         Log.i(TAG,"get username: "+username);
         textView.setText(username);
-//        initListView();
-//        listView.setAdapter(ListItemAdapter);
+        initListView();
+        listView.setAdapter(ListItemAdapter);
         listView.setOnItemLongClickListener(this);
         listView.setOnItemClickListener(this);
 
     }
-//    private void initListView(){
-//        listItem = new ArrayList<HashMap<String, String>>();
-//        TimeService service = new TimeService(this);
-//        for (Time time : service.listuser(username)){
-//            HashMap<String,String> hashMap = new HashMap<>();
-//            hashMap.put("todo",time.getThing());
-//            Log.i("TAG",time.getThing());
-//            hashMap.put("time",time.getTime());
-//            listItem.add(hashMap);
-//        }
-//        ListItemAdapter = new SimpleAdapter(this, listItem,
-//                R.layout.activity_item,
-//                new String[]{"time", "todo"},
-//                new int[]{R.id.time, R.id.todo1}
-//        );
-//    }
+    private void initListView(){
+        listItem = new ArrayList<HashMap<String, String>>();
+        TimeService service = new TimeService(this);
+        Log.i(TAG,"get timeservice");
+        for (Time time : service.listuser(username)){
+            HashMap<String,String> hashMap = new HashMap<>();
+            hashMap.put("todo",time.getThing());
+            Log.i("TAG",time.getThing());
+            hashMap.put("time",time.getTime());
+            listItem.add(hashMap);
+        }
+        ListItemAdapter = new SimpleAdapter(this, listItem,
+                R.layout.activity_item,
+                new String[]{"time", "todo"},
+                new int[]{R.id.time, R.id.todo1}
+        );
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -79,9 +91,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
         Log.i(TAG,"on_long_click");
-        //删除操作
-//        listItem.remove(position);
-//        ListItemAdapter.notifyDataSetChanged();
         //构造对话框
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("提示").setMessage("是否完成计划").setPositiveButton("是", new DialogInterface.OnClickListener() {
@@ -93,6 +102,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }).setNegativeButton("否",null);
         builder.create().show();
         Log.i(TAG,"size"+listItem.size());
+        String time = listItem.get(position).get("time");
+        String thing = listItem.get(position).get("todo");
+        TimeService service =new TimeService(this);
+        service.deleteone(username,time,thing);
         return true;
     }
     public void btn_add(View view){

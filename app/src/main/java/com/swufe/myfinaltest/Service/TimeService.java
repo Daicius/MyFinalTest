@@ -16,13 +16,13 @@ public class TimeService {
         TBNAME2 = dbHelper.TB_NAME2;
     }
     public void add(Time time){
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("time",time.getTime());
-        values.put("thing",time.getThing());
-        values.put("username",time.getUsername());
-        db.insert(TBNAME2,null,values);
-        db.close();
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put("time",time.getTime());
+            values.put("thing",time.getThing());
+            values.put("username",time.getUsername());
+            db.insert(TBNAME2,null,values);
+            db.close();
     }
     public List<Time> listAll(){
         List<Time> TimeItemList = null;
@@ -43,18 +43,20 @@ public class TimeService {
         db.close();
         return TimeItemList;
     }
-    public List<Time> listuser(String username){
+    public List<Time> listuser(String username) {
         List<Time> TimeItemList = null;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor =  db.query(TBNAME2, new String[]{"time", "thing"}, " username = " + username,new String[] {"time","thing"},null,null,null);
+        Cursor cursor =  db.query(TBNAME2,null, null ,null,null,null,null);
         if (cursor != null){
             TimeItemList = new ArrayList<Time>();
             while (cursor.moveToNext()){
-                Time item = new Time();
-                item.setId(cursor.getInt(cursor.getColumnIndex("ID")));
-                item.setTime(cursor.getString(cursor.getColumnIndex("time")));
-                item.setThing(cursor.getString(cursor.getColumnIndex("thing")));
-                TimeItemList.add(item);
+                if (cursor.getString(cursor.getColumnIndex("username")).equals(username)){
+                    Time item = new Time();
+                    item.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+                    item.setTime(cursor.getString(cursor.getColumnIndex("time")));
+                    item.setThing(cursor.getString(cursor.getColumnIndex("thing")));
+                    TimeItemList.add(item);
+                }
             }
             cursor.close();
         }
@@ -64,6 +66,11 @@ public class TimeService {
     public void deleteAll(){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete(TBNAME2,null,null);
+        db.close();
+    }
+    public void deleteone(String username,String time,String thing){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.delete(TBNAME2,"username = "+username+" and time = "+time+" and thing = "+thing,null);
         db.close();
     }
 }

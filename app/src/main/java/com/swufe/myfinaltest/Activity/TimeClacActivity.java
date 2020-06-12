@@ -22,8 +22,6 @@ final String TAG = "TimeClacActivity";
         setContentView(R.layout.activity_time_clac);
         Resething = findViewById(R.id.resething);
         Resetime = findViewById(R.id.resetime);
-        TimeService timeService = new TimeService(this);
-        timeService.deleteAll();
         Intent intent = getIntent();
         String todo = intent.getStringExtra("Todo");
         String time = intent.getStringExtra("Time");
@@ -49,7 +47,8 @@ final String TAG = "TimeClacActivity";
         TimeService timeService = new TimeService(TimeClacActivity.this);
         timeService.add(time1);
         Log.i(TAG,"username = "+time1.getUsername());
-        Intent intent = new Intent(this,TestActivity2.class);
+        Intent intent = new Intent(this,MainActivity.class);
+        intent.putExtra("userName",userName);
         startActivity(intent);
     }
 }
