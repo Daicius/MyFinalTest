@@ -16,10 +16,20 @@ public class LoginActivity extends AppCompatActivity {
 final String TAG = "LoginActivity";
 EditText username;
 EditText password;
+String userName;
+String code;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        Intent intent = getIntent();
+        userName = intent.getStringExtra("username");
+        code = intent.getStringExtra("code");
+        username.setText(userName);
+        password.setText(code);
     }
     public void btnRegister(View btn){
         Intent intent = new Intent(this, RegisterActivity.class);

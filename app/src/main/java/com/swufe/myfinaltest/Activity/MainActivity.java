@@ -1,8 +1,10 @@
 package com.swufe.myfinaltest.Activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +23,10 @@ import com.swufe.myfinaltest.Service.Adapter;
 import com.swufe.myfinaltest.Service.Time;
 import com.swufe.myfinaltest.Service.TimeService;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,9 +37,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     String username;
     ListView listView;
     SimpleAdapter ListItemAdapter;
+    String updateDate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences = getSharedPreferences("mytime", Activity.MODE_PRIVATE);
+        updateDate = sharedPreferences.getString("update","");
+        Log.i(TAG,"update = "+updateDate);
+        Date today = Calendar.getInstance().getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        final String todayStr = simpleDateFormat.format(today);
+        Log.i(TAG,"当前时间"+todayStr);
+        //判断日期是否相同
+        if (!todayStr.equals(updateDate)) {
+            TimeService service = new TimeService(this);
+            service.deleteAll();
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("update", todayStr);
+            editor.commit();
+        } else {
+            Log.i(TAG, "onCreate:don't need updates");
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.Main);
@@ -85,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Intent intent = new Intent(this,TimeClacActivity.class);
         intent.putExtra("Time",timeStr);
         intent.putExtra("Todo",todoStr);
+        intent.putExtra("username",username);
         startActivity(intent);
     }
 
@@ -96,16 +120,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         builder.setTitle("提示").setMessage("是否完成计划").setPositiveButton("是", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                listItem.remove(position);
+                Log.i(TAG,"size"+listItem.size());
                 ListItemAdapter.notifyDataSetChanged();
+                String time = listItem.get(position).get("time");
+                String thing = listItem.get(position).get("todo");
+                TimeService service =new TimeService(MainActivity.this);
+                service.deleteone(username,time,thing);
+                listItem.remove(position);
             }
         }).setNegativeButton("否",null);
         builder.create().show();
-        Log.i(TAG,"size"+listItem.size());
-        String time = listItem.get(position).get("time");
-        String thing = listItem.get(position).get("todo");
-        TimeService service =new TimeService(this);
-        service.deleteone(username,time,thing);
+
+
         return true;
     }
     public void btn_add(View view){

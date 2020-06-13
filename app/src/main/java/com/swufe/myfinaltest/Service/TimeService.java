@@ -16,14 +16,15 @@ public class TimeService {
         TBNAME2 = dbHelper.TB_NAME2;
     }
     public void add(Time time){
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-            ContentValues values = new ContentValues();
-            values.put("time",time.getTime());
-            values.put("thing",time.getThing());
-            values.put("username",time.getUsername());
-            db.insert(TBNAME2,null,values);
-            db.close();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("username",time.getUsername());
+        values.put("time",time.getTime());
+        values.put("thing",time.getThing());
+        db.insert(TBNAME2,null,values);
+        db.close();
     }
+
     public List<Time> listAll(){
         List<Time> TimeItemList = null;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -69,8 +70,8 @@ public class TimeService {
         db.close();
     }
     public void deleteone(String username,String time,String thing){
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        db.delete(TBNAME2,"username = "+username+" and time = "+time+" and thing = "+thing,null);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete(TBNAME2,"username ="+"\""+username+"\""+" and time ="+"\""+time+"\""+" and thing ="+"\""+thing+"\""   ,null);
         db.close();
     }
 }

@@ -63,6 +63,8 @@ final String TAG = "RegisterActivity";
                 user.setPassword(code1);
                 uService.register(user);
                 Intent intent = new Intent(this, LoginActivity.class);
+                intent.putExtra("username",username);
+                intent.putExtra("code",code1);
                 startActivity(intent);
             }
         }
