@@ -15,7 +15,7 @@ import com.swufe.myfinaltest.Service.UserService;
 public class LoginActivity extends AppCompatActivity {
 final String TAG = "LoginActivity";
 EditText username;
-EditText password;
+EditText password,question,answer;
 String userName;
 String code;
 
@@ -25,6 +25,9 @@ String code;
         setContentView(R.layout.activity_login);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+        question = findViewById(R.id.question);
+        answer = findViewById(R.id.answer);
+
         Intent intent = getIntent();
         userName = intent.getStringExtra("username");
         code = intent.getStringExtra("code");
@@ -55,6 +58,11 @@ String code;
             Log.i("TAG","登录失败");
             Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
         }
+    }
+    public void btn_findPassword(View view){
+        Log.i("TAG","找回密码");
+        Intent intent = new Intent(this,FindPasswordActivity.class);
+        startActivity(intent);
     }
 
 }

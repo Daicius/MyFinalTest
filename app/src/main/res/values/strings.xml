@@ -13,4 +13,12 @@
     <string name="btn_reset">确定</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="findPasswprd">找回密码</string>
+    <string name="question">问题</string>
+    <string name="question1">给自己出一个问题用于找回密码</string>
+    <string name="answer">答案</string>
+    <string name="input_username">输入用户名</string>
+    <string name="next">下一步</string>
+    <string name="return1">返回登陆界面</string>
+    <string name="remenberPassword">请记住密码</string>
 </resources>

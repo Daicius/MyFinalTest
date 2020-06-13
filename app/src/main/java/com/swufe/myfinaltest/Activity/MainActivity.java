@@ -102,9 +102,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         String todoStr = hashMap.get("Todo");
         EditText time = view.findViewById(R.id.resetime);
         EditText todo = view.findViewById(R.id.resething);
-
         //打开界面
-
         Intent intent = new Intent(this,TimeClacActivity.class);
         intent.putExtra("Time",timeStr);
         intent.putExtra("Todo",todoStr);
@@ -130,8 +128,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         }).setNegativeButton("否",null);
         builder.create().show();
-
-
         return true;
     }
     public void btn_add(View view){
@@ -141,5 +137,4 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         startActivity(intent);
 
     }
-
 }

@@ -57,18 +57,40 @@
             android:singleLine="true"
             android:hint="@string/code_hint" />
     </LinearLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="btnLogin"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_login"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="btnRegister"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_register"/>
 
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30sp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="95sp"
+            android:onClick="btnLogin"
+            android:text="@string/btn_login" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="btnRegister"
+            android:layout_marginLeft="60sp"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_register"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30sp"
+        android:onClick="btn_findPassword"
+        android:text="@string/findPasswprd"
+        android:id="@+id/find_btn"/>
 
 </LinearLayout>

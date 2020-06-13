@@ -17,6 +17,7 @@ public class RegisterActivity extends AppCompatActivity {
 EditText code;
 EditText codeConfirm;
 EditText userName;
+EditText question,answer;
 final String TAG = "RegisterActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,8 @@ final String TAG = "RegisterActivity";
         userName = findViewById(R.id.userName);
         code = findViewById(R.id.code1);
         codeConfirm = findViewById(R.id.code2);
+        question = findViewById(R.id.question);
+        answer = findViewById(R.id.answer);
         UserService uService = new UserService(RegisterActivity.this);
         String username = userName.getText().toString();
         if (username.length() == 0){
@@ -56,11 +59,18 @@ final String TAG = "RegisterActivity";
                 userName.setText(null);
                 code.setText(null);
                 codeConfirm.setText(null);
-            }else {
+            }else if(question.getText().toString().length() == 0 || answer.getText().toString().length() == 0){
+                Toast.makeText(this,"输入问题",Toast.LENGTH_SHORT).show();
+                Log.i(TAG,"注册失败");
+            }  else{
                 Log.i(TAG,"注册成功");
+                Log.i(TAG,"answer = "+answer.getText().toString());
+                Log.i(TAG,"question = "+question.getText().toString());
                 User user=new User();
                 user.setUsername(username);
                 user.setPassword(code1);
+                user.setAnswer(answer.getText().toString());
+                user.setQuestion(question.getText().toString());
                 uService.register(user);
                 Intent intent = new Intent(this, LoginActivity.class);
                 intent.putExtra("username",username);
