@@ -23,6 +23,7 @@ String password;
     }
     public void btn_return(View view){
         Intent intent = new Intent(this,LoginActivity.class);
+        intent.putExtra("username",intent.getStringExtra("username"));
         startActivity(intent);
     }
 

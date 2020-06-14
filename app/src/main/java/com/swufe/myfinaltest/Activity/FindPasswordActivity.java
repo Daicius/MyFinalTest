@@ -33,7 +33,7 @@ public class FindPasswordActivity extends AppCompatActivity {
             Intent intent = new Intent(this,LoginActivity.class);
             startActivity(intent);
         }else {
-            Intent intent = new Intent(this,FIndPasswordActivity2.class);
+            Intent intent = new Intent(this, FindPasswordActivity2.class);
             Log.i(TAG, "获得用户名，前往问题");
             intent.putExtra("username",username);
             startActivity(intent);

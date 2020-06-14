@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyFinalTest</string>
+    <string name="app_name">Time</string>
     <string name="user_name">用户名:</string>
     <string name="user_hint">输入用户名</string>
     <string name="user_code">密码:</string>

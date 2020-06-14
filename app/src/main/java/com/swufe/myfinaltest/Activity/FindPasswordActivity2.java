@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.swufe.myfinaltest.R;
 import com.swufe.myfinaltest.Service.UserService;
 
-public class FIndPasswordActivity2 extends AppCompatActivity {
+public class FindPasswordActivity2 extends AppCompatActivity {
 String TAG = "FindActivity";
 TextView textView;
 EditText editText;
@@ -23,7 +23,7 @@ String answer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_f_ind_password2);
+        setContentView(R.layout.activity_find_password2);
         textView = findViewById(R.id.get_question);
         editText = findViewById(R.id.writeAnswer);
         Intent intent =getIntent();
@@ -44,9 +44,10 @@ String answer;
             Intent intent = new Intent(this,GetPasswordActivity.class);
             String password = service.getPassword(username);
             intent.putExtra("password",password);
+            intent.putExtra("username",username);
             startActivity(intent);
         }else {
-            Toast.makeText(FIndPasswordActivity2.this, "答案错误", Toast.LENGTH_SHORT).show();
+            Toast.makeText(FindPasswordActivity2.this, "答案错误", Toast.LENGTH_SHORT).show();
             editText.setText(null);
         }
     }
