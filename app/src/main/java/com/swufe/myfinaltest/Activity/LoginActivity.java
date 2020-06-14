@@ -51,11 +51,16 @@ String code;
         if(flag){
             Log.i("TAG","登录成功");
             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+//            Bundle bundle = new Bundle();
+//            bundle.putString("username",userName);
+//            Fragment fragment = new FirstFragment();
+//            fragment.setArguments(bundle);
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("userName",name);
             startActivity(intent);
         }else{
             Log.i("TAG","登录失败");
+            password.setText(null);
             Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
         }
     }

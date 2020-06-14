@@ -88,5 +88,11 @@ public class UserService {
         String realAns = getAnswer(username);
         return realAns.equals(answer);
     }
+    public void resetPass(String username,String newpass){
+        SQLiteDatabase sdb=dbHelper.getWritableDatabase();
+        String sql = "update "+TBNAME1+" set password = "+"\""+newpass+"\""+" where username = "+"\""+username+"\"";
+        sdb.execSQL(sql);
+        sdb.close();
+    }
 
 }

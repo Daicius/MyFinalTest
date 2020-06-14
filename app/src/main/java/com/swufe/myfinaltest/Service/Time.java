@@ -7,6 +7,7 @@ public class Time implements Serializable {
     private String time;
     private String username;
     private String thing;
+    private String detail;
     public Time() {
         super();
         // TODO Auto-generated constructor stub
@@ -29,11 +30,20 @@ public class Time implements Serializable {
         this.username = username;
     }
 
-    public Time(String username, String time, String thing) {
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public Time(String username, String time, String thing , String detail) {
         super();
         this.username = username;
         this.thing = thing;
         this.time = time;
+        this.detail = detail;
 
     }
 

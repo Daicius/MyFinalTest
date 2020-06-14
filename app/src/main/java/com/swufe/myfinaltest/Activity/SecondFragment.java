@@ -1,21 +1,30 @@
 package com.swufe.myfinaltest.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.swufe.myfinaltest.R;
+import com.swufe.myfinaltest.Service.TimeService;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SecondFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SecondFragment extends Fragment {
-
+public class SecondFragment extends Fragment implements View.OnClickListener {
+    TextView tv_user,tv_rest;
+    Button logout,more;
+    String username;
+    int restthing;
+    final String TAG = "SecondFragment";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -60,6 +69,33 @@ public class SecondFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false);
+        View view = inflater.inflate(R.layout.fragment_second2, container, false);
+        tv_user = view.findViewById(R.id.tv_username);
+        tv_rest = view.findViewById(R.id.tv_needtodo);
+        username = getActivity().getIntent().getStringExtra("userName");
+        Log.i(TAG,"username = "+username);
+        tv_user.setText(username);
+        TimeService service = new TimeService(getContext());
+        restthing = service.resthing(username);
+        Log.i(TAG,"rest = "+restthing);
+        tv_rest.setText(restthing+"件");
+        logout = view.findViewById(R.id.btn_logout);
+        more = view.findViewById(R.id.btn_changePassword);
+        logout.setOnClickListener(this);
+        more.setOnClickListener(this);
+        return view;
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btn_logout){
+            Intent intent = new Intent(getContext(),LoginActivity.class);
+            startActivity(intent);
+        }else if (v.getId() == R.id.btn_changePassword){
+            Intent intent = new Intent(getContext(),ChangePasswordActivity.class);
+            intent.putExtra("username",username);
+            startActivity(intent);
+        }
     }
 }

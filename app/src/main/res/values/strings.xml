@@ -21,4 +21,14 @@
     <string name="next">下一步</string>
     <string name="return1">返回登陆界面</string>
     <string name="remenberPassword">请记住密码</string>
+    <string name="Detail">计划细节</string>
+    <string name="resthing">待完成任务:</string>
+    <string name="tv_info">用户信息</string>
+    <string name="btn_more">更多</string>
+    <string name="logout">退出登录</string>
+    <string name="btn_changePassword">修改密码</string>
+    <string name="tv_changePassword">修改密码</string>
+    <string name="usedPassword">原密码</string>
+    <string name="newPassword">新密码</string>
+    <string name="confirmPassword">确认新密码</string>
 </resources>

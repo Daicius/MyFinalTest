@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,16 +40,21 @@ final String TAG = "TimeClacActivity";
         userName = username;
         todo = Resething.getText().toString();
         time = Resetime.getText().toString();
-        Log.i(TAG,"todo :"+todo);
-        Time time1 = new Time();
-        time1.setThing(todo);
-        time1.setTime(time);
-        time1.setUsername(userName);
-        TimeService timeService = new TimeService(TimeClacActivity.this);
-        timeService.add(time1);
-        Log.i(TAG,"username = "+time1.getUsername());
-        Intent intent = new Intent(this,MainActivity.class);
-        intent.putExtra("userName",userName);
-        startActivity(intent);
+        if (todo.length() > 0 && time.length() > 0){
+            Log.i(TAG,"todo :"+todo);
+            Time time1 = new Time();
+            time1.setThing(todo);
+            time1.setTime(time);
+            time1.setUsername(userName);
+            TimeService timeService = new TimeService(TimeClacActivity.this);
+            timeService.add(time1);
+            Log.i(TAG,"username = "+time1.getUsername());
+            Intent intent = new Intent(this,MainActivity.class);
+            intent.putExtra("userName",userName);
+            startActivity(intent);
+        }else {
+            Toast.makeText(TimeClacActivity.this, "请输入计划", Toast.LENGTH_SHORT).show();
+            Log.i(TAG,"no data input");
+        }
     }
 }

@@ -4,24 +4,23 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.swufe.myfinaltest.Activity.FirstFragment;
 import com.swufe.myfinaltest.Activity.SecondFragment;
-import com.swufe.myfinaltest.Activity.UserFragment;
 
-public class Adapter extends FragmentPagerAdapter {
+public class PageAdapter extends FragmentPagerAdapter {
 
-    public Adapter(FragmentManager fm){
+    public PageAdapter(FragmentManager fm){
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 0) {
-            return new UserFragment();
-        } else {
+        if(position==0){
+            return new FirstFragment();
+        }else {
             return new SecondFragment();
         }
     }
-
 
     @Override
     public int getCount() {

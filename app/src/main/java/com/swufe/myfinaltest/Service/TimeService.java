@@ -74,4 +74,17 @@ public class TimeService {
         db.delete(TBNAME2,"username ="+"\""+username+"\""+" and time ="+"\""+time+"\""+" and thing ="+"\""+thing+"\""   ,null);
         db.close();
     }
+    public int resthing(String username){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.query(TBNAME2,null,null,null,null,null,null);
+        int count = 0;
+        while (cursor.moveToNext()){
+            if (cursor.getString(cursor.getColumnIndex("username")).equals(username)){
+                count++;
+            }
+        }
+        cursor.close();
+        db.close();
+        return count;
+    }
 }
