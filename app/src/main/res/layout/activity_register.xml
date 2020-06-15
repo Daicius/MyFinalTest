@@ -24,7 +24,7 @@
             android:layout_weight="3"
             android:gravity="center"
             android:text="@string/user_name"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -32,7 +32,9 @@
             android:id="@+id/userName"
             android:layout_weight="1"
             android:singleLine="true"
-            android:hint="@string/user_hint" />
+            android:hint="@string/user_hint"
+            android:importantForAutofill="no"
+            android:inputType="text" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +46,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_weight="3"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:text="@string/user_code"/>
 
         <EditText
@@ -53,7 +55,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:singleLine="true"
-            android:hint="@string/code_hint" />
+            android:hint="@string/code_hint"
+            android:importantForAutofill="no"
+            android:inputType="textPassword" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,7 +69,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_weight="3"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:text="@string/code_confirm"/>
 
         <EditText
@@ -74,7 +78,9 @@
             android:layout_weight="1"
             android:singleLine="true"
             android:id="@+id/code2"
-            android:hint="@string/code_Confirm" />
+            android:hint="@string/code_Confirm"
+            android:importantForAutofill="no"
+            android:inputType="textPassword" />
     </LinearLayout>
     <LinearLayout
     android:layout_width="match_parent"
@@ -86,7 +92,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:layout_weight="3"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:text="@string/question"/>
 
     <EditText
@@ -95,7 +101,9 @@
         android:layout_weight="1"
         android:singleLine="true"
         android:id="@+id/question"
-        android:hint="@string/question1" />
+        android:hint="@string/question1"
+        android:importantForAutofill="no"
+        android:inputType="text" />
 </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -107,7 +115,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_weight="3"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:text="@string/answer"/>
 
         <EditText
@@ -115,7 +123,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:singleLine="true"
-            android:id="@+id/answer" />
+            android:id="@+id/answer"
+            android:importantForAutofill="no"
+            android:inputType="text" />
     </LinearLayout>
     <Button
         android:layout_width="wrap_content"

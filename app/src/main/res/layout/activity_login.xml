@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/design_default_color_background"
     android:gravity="top"
+    android:orientation="vertical"
     tools:context=".Activity.LoginActivity">
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textSize="@android:dimen/app_icon_size"
-    android:gravity="center"
-    android:text="@string/app_name"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textSize="@android:dimen/app_icon_size" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,41 +27,43 @@
             android:layout_weight="3"
             android:gravity="center"
             android:text="@string/user_name"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
 
         <EditText
-            android:layout_width="match_parent"
             android:id="@+id/username"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:hint="@string/user_hint"
             android:singleLine="true"
-            android:hint="@string/user_hint" />
+            android:inputType="text"
+            android:importantForAutofill="no" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_weight="3"
-            android:textSize="15dp"
-            android:text="@string/user_code"/>
+            android:gravity="center"
+            android:text="@string/user_code"
+            android:textSize="15sp" />
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/password"
-            android:inputType="textPassword"
             android:layout_weight="1"
+            android:hint="@string/code_hint"
+            android:inputType="textPassword"
             android:singleLine="true"
-            android:hint="@string/code_hint" />
+            android:importantForAutofill="no" />
     </LinearLayout>
-
-
-
 
 
     <LinearLayout
@@ -74,23 +78,26 @@
             android:layout_gravity="center"
             android:layout_marginLeft="95sp"
             android:onClick="btnLogin"
-            android:text="@string/btn_login" />
+            android:text="@string/btn_login"
+            android:layout_marginStart="95sp" />
+
         <Button
             android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="btnRegister"
-            android:layout_marginLeft="60sp"
             android:layout_height="wrap_content"
-            android:text="@string/btn_register"/>
+            android:layout_gravity="center"
+            android:layout_marginLeft="60sp"
+            android:onClick="btnRegister"
+            android:text="@string/btn_register"
+            android:layout_marginStart="60sp" />
     </LinearLayout>
 
     <Button
+        android:id="@+id/find_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30sp"
         android:onClick="btn_findPassword"
-        android:text="@string/findPasswprd"
-        android:id="@+id/find_btn"/>
+        android:text="@string/findPasswprd" />
 
 </LinearLayout>

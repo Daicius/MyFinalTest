@@ -10,12 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:id="@+id/resetime"/>
+        android:id="@+id/resetime"
+        android:importantForAutofill="no"
+        android:inputType="text" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:id="@+id/resething"/>
+        android:id="@+id/resething"
+        android:importantForAutofill="no"
+        android:inputType="text" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
