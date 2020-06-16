@@ -21,8 +21,19 @@ public class TimeService {
         values.put("username",time.getUsername());
         values.put("time",time.getTime());
         values.put("thing",time.getThing());
+        values.put("detail",time.getDetail());
         db.insert(TBNAME2,null,values);
         db.close();
+    }
+    public boolean isNewTime(String username,String time, String thing){
+        SQLiteDatabase sdb=dbHelper.getReadableDatabase();
+        String sql= " select * from "+ TBNAME2 + "  where username=? and time=? and thing=?";
+        Cursor cursor=sdb.rawQuery(sql, new String[]{username,time,thing});
+        if(cursor.moveToFirst() == true){
+            cursor.close();
+            return false;
+        }
+        return true;
     }
 
     public List<Time> listAll(){
@@ -87,4 +98,16 @@ public class TimeService {
         db.close();
         return count;
     }
+    public String getDetail(String username,String time,String thing){
+        SQLiteDatabase sdb=dbHelper.getReadableDatabase();
+        String detail = null;
+        String sql= " select * from "+ TBNAME2 + "  where username=? and time=? and thing=?";
+        Cursor cursor=sdb.rawQuery(sql, new String[]{username,time,thing});
+        if(cursor.moveToFirst() == true){
+            detail = cursor.getString(cursor.getColumnIndex("detail"));
+        }
+        cursor.close();
+        return detail;
+    }
+
 }

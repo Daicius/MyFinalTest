@@ -31,4 +31,8 @@
     <string name="usedPassword">原密码</string>
     <string name="newPassword">新密码</string>
     <string name="confirmPassword">确认新密码</string>
+    <string name="input_time">输入时间</string>
+    <string name="input_thing">输入事件</string>
+    <string name="time">时间</string>
+    <string name="thing">计划</string>
 </resources>

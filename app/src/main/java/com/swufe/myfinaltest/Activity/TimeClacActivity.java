@@ -47,11 +47,21 @@ final String TAG = "TimeClacActivity";
             time1.setTime(time);
             time1.setUsername(userName);
             TimeService timeService = new TimeService(TimeClacActivity.this);
-            timeService.add(time1);
-            Log.i(TAG,"username = "+time1.getUsername());
-            Intent intent = new Intent(this,MainActivity.class);
-            intent.putExtra("userName",userName);
-            startActivity(intent);
+            boolean flag = timeService.isNewTime(username,time,todo);
+            Log.i(TAG, "flag = "+flag);
+            if (flag){
+                timeService.add(time1);
+                Log.i(TAG,"username = "+time1.getUsername());
+                Intent intent = new Intent(this,MainActivity.class);
+                intent.putExtra("userName",userName);
+                startActivity(intent);
+            }else {
+                Toast.makeText(TimeClacActivity.this, "计划相同", Toast.LENGTH_SHORT).show();
+                Resething.setText(null);
+                Resetime.setText(null);
+            }
+
+
         }else {
             Toast.makeText(TimeClacActivity.this, "请输入计划", Toast.LENGTH_SHORT).show();
             Log.i(TAG,"no data input");
